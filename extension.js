@@ -19,28 +19,49 @@ function displayError(error) {
   vscode.window.showErrorMessage(error.message)
 }
 
+function executePrompt(command) {
+  const editor = vscode.window.activeTextEditor;
+  if (editor) {
+    const selection = editor.selection;
+    const selectedText = editor.document.getText(selection);
+
+    // Display the response in a new output window
+    vertexAI
+      .get_response_from_ai(command, selectedText)
+      .then(response => {
+        if (response.ok) {
+          return response.json()
+        }
+        throw new Error('Error!')
+      })
+      .then(data => displayOutput(data))
+      .catch(err => displayError(err))
+  }
+}
+
 /**
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
 
-	let disposable = vscode.commands.registerCommand('VertexAI.generateDocString', () => {
-		const editor = vscode.window.activeTextEditor;
-	
-		if (editor) {
-		  const selection = editor.selection;
-		  const selectedText = editor.document.getText(selection);
-	
-      // Display the response in a new output window
-      vertexAI
-        .get_response_from_ai('generate_doc_strings', selectedText)
-        .then(response => response.json())
-        .then(data => displayOutput(data))
-        .catch((err) => displayError(err))
-		}
-	  });
+  let doc_string_disposable = vscode.commands.registerCommand(
+    'VertexAI.generateDocString',
+    () => executePrompt('generate_doc_strings')
+  );
 
-  context.subscriptions.push(disposable);
+  let unit_test_disposable = vscode.commands.registerCommand(
+    'VertexAI.generateUnitTests',
+    () => executePrompt('generate_unit_tests')
+  );
+
+  let code_review_disposable = vscode.commands.registerCommand(
+    'VertexAI.reviewCode',
+    () => executePrompt('code_review')
+  );
+
+  context.subscriptions.push(doc_string_disposable);
+  context.subscriptions.push(unit_test_disposable);
+  context.subscriptions.push(code_review_disposable);
 }
 
 // This method is called when your extension is deactivated

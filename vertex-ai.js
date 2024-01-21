@@ -3,7 +3,8 @@
 // code summary
 // generation of unit tests
 
-const OAUTH_TOKEN = '<token>'
+const OAUTH_TOKEN = 'token'
+const PROJECT = 'gcve-hackathon-24'
 
 const MODEL_MAP = {
   'code_generation': 'code-bison',
@@ -11,7 +12,7 @@ const MODEL_MAP = {
   'code_chat': 'codechat-bison'
 }
 
-const API_URL = 'https://us-central1-aiplatform.googleapis.com/v1/projects/gcve-hackathon-24/locations/us-central1/publishers/google/models/code-bison:predict'
+const API_URL = `https://us-central1-aiplatform.googleapis.com/v1/projects/${PROJECT}/locations/us-central1/publishers/google/models/code-bison:predict`
 
 
 parameters = {
@@ -39,9 +40,6 @@ function get_payload(prompt) {
 }
 
 function get_response_from_ai(menu_option, user_prompt) {
-  console.log(menu_option)
-  console.log(user_prompt)
-
   final_prompt = menu_option_prompt_prefix_map[menu_option] + user_prompt
 
   payload = get_payload(final_prompt)
