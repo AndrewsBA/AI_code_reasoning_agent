@@ -1,6 +1,6 @@
 {
   "name": "code_reasoning_agent",
-  "displayName": "Vertex AI code reasoning Agent",
+  "displayName": "Vertex AI Code Reasoning Agent",
   "description": "",
   "version": "0.0.1",
   "engines": {
@@ -14,7 +14,15 @@
   "contributes": {
     "commands": [{
       "command": "VertexAI.generateDocString",
-      "title": "Vertex AI"
+      "title": "Vertex AI: Generate Doc Strings"
+    },
+    {
+      "command": "VertexAI.generateUnitTests",
+      "title": "Vertex AI: Generate Unit Tests"
+    },
+    {
+      "command": "VertexAI.reviewCode",
+      "title": "Vertex AI: Review Code"
     }]
   },
   "scripts": {
