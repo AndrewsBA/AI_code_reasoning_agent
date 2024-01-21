@@ -11,7 +11,7 @@ const vscode = require('vscode');
 function displayOutput(output) {
   const outputChannel = vscode.window.createOutputChannel('VertexAI');
   outputChannel.appendLine(`Generated Doc Strings:`);
-  outputChannel.append(output.predictions[0].content);
+  outputChannel.append(output.predictions[0].candidates[0].content);
   outputChannel.show();
 }
 
