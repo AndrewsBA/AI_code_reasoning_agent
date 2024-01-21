@@ -1,3 +1,4 @@
+const vertexAI = require('./vertex-ai')
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
@@ -7,45 +8,39 @@ const vscode = require('vscode');
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 
+function displayOutput(output) {
+  const outputChannel = vscode.window.createOutputChannel('VertexAI');
+  outputChannel.appendLine(`Generated Doc Strings:`);
+  outputChannel.append(output.predictions[0].content);
+  outputChannel.show();
+}
+
+function displayError(error) {
+  vscode.window.showErrorMessage(error.message)
+}
+
 /**
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "rocket" is now active!');
-
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with  registerCommand
-	// The commandId parameter must match the command field in package.json
-	/*let disposable = vscode.commands.registerCommand('rocket.helloWorld', function () {
-		// The code you place here will be executed every time your command is executed
-
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from AI code reasoning Agent!');
-
-		vscode.env.openExternal(vscode.Uri.parse("http://google.com/search?q=cute+animals&sclient=img"));
-
-	});
-	*/
-	
-	
-	let disposable = vscode.commands.registerCommand('rocket.helloWorld', () => {
+	let disposable = vscode.commands.registerCommand('VertexAI.generateDocString', () => {
 		const editor = vscode.window.activeTextEditor;
 	
 		if (editor) {
 		  const selection = editor.selection;
 		  const selectedText = editor.document.getText(selection);
 	
-		  vscode.window.showInformationMessage(selectedText)
-		  vscode.window.createOutputChannel(selectedText)
+      // Display the response in a new output window
+      vertexAI
+        .get_response_from_ai('generate_doc_strings', selectedText)
+        .then(response => response.json())
+        .then(data => displayOutput(data))
+        .catch((err) => displayError(err))
 		}
 	  });
 
-	context.subscriptions.push(disposable);
-	
-
+  context.subscriptions.push(disposable);
 }
 
 // This method is called when your extension is deactivated
