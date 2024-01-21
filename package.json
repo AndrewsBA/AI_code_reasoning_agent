@@ -31,7 +31,7 @@
       }
     ],
     "menus": {
-      "editor/content": [{
+      "editor/context": [{
         "submenu": "code_reasoning_agent"
       }],
       "code_reasoning_agent":[
