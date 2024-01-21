@@ -23,7 +23,29 @@
     {
       "command": "VertexAI.reviewCode",
       "title": "Vertex AI: Review Code"
-    }]
+    }],
+    "submenus": [
+      {
+        "id":"code_reasoning_agent",
+        "label": "AI Code Reasoning Agent"
+      }
+    ],
+    "menus": {
+      "editor/content": [{
+        "submenu": "code_reasoning_agent"
+      }],
+      "code_reasoning_agent":[
+        {
+          "command": "VertexAI.reviewCode"
+        },
+        {
+          "command": "VertexAI.generateDocString"
+        },
+        {
+          "command": "VertexAI.generateUnitTests"
+        }
+      ]
+    }
   },
   "scripts": {
     "lint": "eslint .",
