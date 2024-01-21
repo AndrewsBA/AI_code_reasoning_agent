@@ -14,15 +14,15 @@
   "contributes": {
     "commands": [{
       "command": "VertexAI.generateDocString",
-      "title": "Vertex AI: Generate Doc Strings"
+      "title": "Generate Doc Strings"
     },
     {
       "command": "VertexAI.generateUnitTests",
-      "title": "Vertex AI: Generate Unit Tests"
+      "title": "Generate Unit Tests"
     },
     {
       "command": "VertexAI.reviewCode",
-      "title": "Vertex AI: Review Code"
+      "title": "Review Code"
     }]
   },
   "scripts": {
