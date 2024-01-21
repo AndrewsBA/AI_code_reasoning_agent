@@ -14,7 +14,7 @@
   "contributes": {
     "commands": [{
       "command": "VertexAI.generateDocString",
-      "title": "Generate Doc Strings"
+      "title": "Generate Documentation"
     },
     {
       "command": "VertexAI.generateUnitTests",
