@@ -17,7 +17,7 @@ const API_URL = `https://us-central1-aiplatform.googleapis.com/v1/projects/${PRO
 
 parameters = {
   'candidateCount': 1,
-  'maxOutputTokens': 60,
+  'maxOutputTokens': 1024,
   'temperature': 0.9,
   'topP': 1
 }
