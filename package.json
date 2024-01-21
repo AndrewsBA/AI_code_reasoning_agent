@@ -1,6 +1,6 @@
 {
-  "name": "rocket",
-  "displayName": "AI code reasoning Agent",
+  "name": "code_reasoning_agent",
+  "displayName": "Vertex AI code reasoning Agent",
   "description": "",
   "version": "0.0.1",
   "engines": {
@@ -13,8 +13,8 @@
   "main": "./extension.js",
   "contributes": {
     "commands": [{
-      "command": "rocket.helloWorld",
-      "title": "Hello World"
+      "command": "VertexAI.generateDocString",
+      "title": "Vertex AI"
     }]
   },
   "scripts": {
