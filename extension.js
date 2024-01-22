@@ -59,9 +59,15 @@ function activate(context) {
     () => executePrompt('code_review')
   );
 
+  let code_summary_disposable = vscode.commands.registerCommand(
+    'VertexAI.codeSummary',
+    () => executePrompt('code_summary')
+  );
+
   context.subscriptions.push(doc_string_disposable);
   context.subscriptions.push(unit_test_disposable);
   context.subscriptions.push(code_review_disposable);
+  context.subscriptions.push(code_summary_disposable);
 }
 
 // This method is called when your extension is deactivated
