@@ -24,7 +24,8 @@ parameters = {
 menu_option_prompt_prefix_map = {
   'generate_unit_tests': 'Generate unit tests for the following code:\n',
   'generate_doc_strings': 'Generate doc strings for the following code:\n',
-  'code_review': 'Consider you are professional sotfware engineer. You task is to review the code and give recommendations of code changes for following code with specific line numbers:\n'
+  'code_review': 'Consider you are professional sotfware engineer. You task is to review the code and give recommendations of code changes for following code with specific line numbers:\n',
+  'code_summary': 'Consider you are professional sotware engineer. Summarize and explain the following code.\n'
 }
 
 function get_payload(prompt) {
